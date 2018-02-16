@@ -1,0 +1,49 @@
+struct ReadReq {
+	Hash []byte
+}
+
+struct ReadResp {
+	Error string
+	Data []byte
+}
+
+struct WriteReq {
+	Data []byte
+}
+
+struct WriteResp {
+	Error string
+	Hash []byte
+}
+
+struct MarkReq {
+}
+
+struct MarkResp {
+}
+
+struct SweepReq {
+}
+
+struct SweepResp {
+}
+
+struct Req framed {
+	ID vuint64
+	Request union Request {
+		ReadReq
+		WriteReq
+		MarkReq
+		SweepReq
+	}
+}
+
+struct Resp framed {
+	ID vuint64
+	Response union Response {
+		ReadResp
+		WriteResp
+		MarkResp
+		SweepResp
+	}
+}
